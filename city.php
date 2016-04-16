@@ -1,4 +1,5 @@
 <?php
+//ОХ ТЫЖ МАТЕРЬ БОЖЬЯ
 require_once "house.php";
 
 class City {
