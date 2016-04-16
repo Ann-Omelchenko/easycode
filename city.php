@@ -2,8 +2,10 @@
 //ОХ ТЫЖ МАТЕРЬ БОЖЬЯ
 require_once "house.php";
 
+
 // hello!
->>>>>>> upstream/dev
+
+
 class City {
 	public $name;
 	public $housePull = array();
