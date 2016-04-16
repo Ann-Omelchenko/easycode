@@ -1,7 +1,7 @@
 <?php
 //ОХ ТЫЖ МАТЕРЬ БОЖЬЯ
 require_once "house.php";
-
+// AAAAAAAAaa
 class City {
 	public $name;
 	public $housePull = array();
