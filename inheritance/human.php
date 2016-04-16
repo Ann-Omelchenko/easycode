@@ -1,5 +1,5 @@
 <?php
-
+//Брум Пум Пум
 abstract class Human
 {
     public $age;
