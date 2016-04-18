@@ -5,7 +5,7 @@ class Man extends Human
 {
     public function speak() {
         parent::speak();
-        echo ' a little bit';
+        echo ' a little big';
     }
 
     public function eat() {
