@@ -7,12 +7,21 @@ class WriterFactory
 {
     public static function getWriter()
     {
-        $format = $_GET['format'];
+$format = $_GET['format'];
+
+       if ($_GET[' ']){
+        //$format = $_GET['format'];
 
         $writerName = $format . '_' . 'Writer';
 
         $writer = new $writerName;
 
         return $writer;
+    }else {
+    	echo 'Some title';
+    	echo '<br />';
+        echo 'Some text';
+    }
+    
     }
 }
