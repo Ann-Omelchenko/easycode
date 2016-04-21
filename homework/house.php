@@ -19,8 +19,8 @@ class House {
     }
 
     public function addCitzien(Human $citzien) {
-
-        if ($this->getCitzienCount() >= $this->_citzienRestiction) {
+        
+        if ($this->getCitzienCount() >= $this->_citzienRestiction || $this->citzien != $this->getCity) {
             // TODO: add exception
         } else {
             $this->citziens[$citzien->getId()] = $citzien;
@@ -54,4 +54,6 @@ class House {
     public function getCity() {
         return $this->_city;
     }
+
+    
 }
