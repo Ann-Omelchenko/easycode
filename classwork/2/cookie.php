@@ -11,6 +11,7 @@ class Cookie implements iCookie
 	
     public $Cookie = array();
 
+<<<<<<< HEAD
     public function getCookie($key){
       return $this->Cookie;
     }
@@ -29,3 +30,12 @@ $cookie = new Cookie();
 echo $cookie-> getCookie($key);
 echo $cookie-> setCookie($key, $value);
 echo $cookie-> deleteCookie($key);
+=======
+}
+
+$cookie = new Cookie();
+$cookie->setCookie('key1', 'value1');
+$cookie->getCookie('key1'); // value1
+$cookie->deleteCookie('key1');
+$cookie->getCookie('key1'); // null
+>>>>>>> upstream/dev
