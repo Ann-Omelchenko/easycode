@@ -56,7 +56,7 @@ $city->addCitzien($woman);
 $house->setOwner($woman);
 $man->live($house);
 
-echo 'House:';
+echo 'City:';
 echo '<pre>';
-print_r($house);
+print_r($city);
 echo '</pre>';

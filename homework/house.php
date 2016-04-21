@@ -20,7 +20,6 @@ class House {
 
     public function addCitzien(Human $citzien) {
 
-        // add condition
         if ($this->getCitzienCount() >= $this->_citzienRestiction) {
             // TODO: add exception
         } else {
