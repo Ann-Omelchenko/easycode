@@ -1,29 +1,52 @@
 <?php
-require_once "city.php";
-require_once "man.php";
-require_once 'woman.php';
-require_once 'human.php';
+require_once "student hostel.php";
 
-$city = new City("Kramatorsk");
 
-$house1 = new House("House1");
-$man1 = new Man ("Boris");
-$woman1 = new Woman("Olga");
-$woman1->addRegistrationToHuman($house1);
-$man1->addRegistrationToHuman($house1);
-$city->buildHouse($house1);
+$hostel = new Hostel("Hostel 1");
+$floor1 = new Floor('#1');
+$floor2 = new Floor('#2');
+$room1 = new Room("#12");
+$room2 = new Room('#64');
+$hostel->buildFloor($floor1);
+$hostel->buildFloor($floor2);
+$floor2->buildRoom($room1);
+$floor2->buildRoom($room2);
 
-$house2 = new House("House2");
-$man2 = new Man("Max");
-$woman2 = new Woman("Lena");
-$woman2->addRegistrationToHuman($house2);
-$man2->addRegistrationToHuman($house2);
-$city->buildHouse($house2);
+$man = new Man(1, "Alexander Andreevich", 40);
+$man1 = new Man (2, 'Boris', 19);
+$man2 = new Man(3, 'Max', 22);
+$woman1 = new Woman(4,'Olga', 20);
+$woman2 = new Woman(5, "lena", 21);
+$woman = new Woman(6, "Elena Sergeevna", 60);
+$animals = new Animals(7, "cockroach");
 
-$city->printAllHouses();
-echo '<hr />';
-$man1->printAllRegistration();
-$woman1->printAllRegistration();
-echo '<hr />';
-$man2->printAllRegistration();
-$woman2->printAllRegistration();
+$hostel->setOwnerHostel($man);
+$hostel->addStudents($man1);
+$hostel->addStudents($man2);
+$hostel->addStudents($woman1);
+$hostel->addStudents($woman2);
+$hostel->addJanitor($woman);
+$hostel->addAnimals($animals);
+
+$floor1->addJanitor($woman);
+$floor2->addStudents($man1);
+$floor2->addStudents($man2);
+$floor2->addStudents($woman1);
+$floor2->addStudents($woman2);
+
+
+$man1->live($room1);
+$man2->live($room1);
+$woman1->live($room2);
+$woman2->live($room2);
+$animals->live($room1);
+
+echo '<pre>';
+print_r($hostel);
+echo '</pre>';
+
+
+
+
+
+

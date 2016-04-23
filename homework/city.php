@@ -4,12 +4,12 @@ require_once 'woman.php';
 require_once 'man.php';
 
 class City {
-	public $name;
+	protected $name;
 	public $housePull = array();
 	public $citziens = array();
 
 	public function __construct($name) {
-        $this->name = $name;
+        $this->_name = $name;
 	}
 
 	public function buildHouse(House $objHouse) {
@@ -39,7 +39,13 @@ class City {
     }
 
     public function getCitzienById($id) {
-        return $this->citziens[$id];
+        return isset($this->citziens[$id])
+            ? $this->citziens[$id]
+            : false;
+    }
+
+    public function getName() {
+        return $this->_name;
     }
 }
 
@@ -51,12 +57,8 @@ $man = new Man(1, 'Alexander', 18);
 $woman = new Woman(2, 'Olga', 19);
 
 $city->addCitzien($man);
-$city->addCitzien($woman);
+
 
 $house->setOwner($woman);
 $man->live($house);
 
-echo 'City:';
-echo '<pre>';
-print_r($city);
-echo '</pre>';

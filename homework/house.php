@@ -19,12 +19,18 @@ class House {
     }
 
     public function addCitzien(Human $citzien) {
-        
-        if ($this->getCitzienCount() >= $this->_citzienRestiction || $this->citzien != $this->getCity) {
-            // TODO: add exception
-        } else {
-            $this->citziens[$citzien->getId()] = $citzien;
+
+        if (!$this->getCity()->getCitzienById($citzien->getId())) {
+            return false;
         }
+
+        if ($this->getCitzienCount() >= $this->_citzienRestiction) {
+            return false;
+
+        }
+
+        $this->citziens[$citzien->getId()] = $citzien;
+        return true;
     }
 
     public function getCitzienCount() {

@@ -21,8 +21,18 @@ abstract class Human
         return $this->_age;
     }
 
+    public function getName() {
+        return $this->_name;
+    }
+
     public function live(House $house) {
-        $house->addCitzien($this);
+        if ($house->addCitzien($this)) {
+            echo $this->getName() . ' is living now in ' .
+                $house->getName();
+        } else {
+            echo $this->getName() . ' is not living in city ' .
+                $house->getCity()->getName();
+        }
     }
 
      public function setCity(City $city) {
