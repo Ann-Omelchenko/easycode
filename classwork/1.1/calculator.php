@@ -25,11 +25,9 @@ public function multiply($a, $b){
 }
 
 $calculator = new Calculator();
-<<<<<<< HEAD
+
 echo $calculator->plus(1, 2); // 3
 echo $calculator->minus(1, 2);
 echo $calculator->divide(1, 2);
 echo $calculator->multiply(1, 2);
-=======
-$calculator->plus(1, 2); // 3
->>>>>>> upstream/dev
+
