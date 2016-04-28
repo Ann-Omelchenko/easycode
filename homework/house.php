@@ -5,8 +5,14 @@ class House {
 
     public $height;
     public $name;
+<<<<<<< HEAD
     public $citziens = array();
     protected $_citzienRestiction = 5;
+=======
+    public $citziens = [];
+
+    protected $_citzienRestiction = 1;
+>>>>>>> upstream/dev
     protected $_owner; // human object
     /**
      * @var City
@@ -25,6 +31,10 @@ class House {
         }
 
         if ($this->getCitzienCount() >= $this->_citzienRestiction) {
+            echo '<br />';
+            echo 'Maximum citzien count limit is ' . $this->_citzienRestiction;
+            echo ' .Current count is: ' . $this->getCitzienCount();
+            echo '<br />';
             return false;
 
         }

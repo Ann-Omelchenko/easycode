@@ -45,7 +45,27 @@ class PostController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
+
     }
+
+    public function actionAll(){
+
+        return $this->render('all', [
+             'post' => Post::find()
+                    ->all(),
+        ]);
+    }
+
+     public function actionPost(){
+
+        return $this->render('post', [
+             'posts' => Post::find()
+                    ->all(),
+            ]);
+
+    }
+
+
 
     /**
      * Displays a single Post model.
