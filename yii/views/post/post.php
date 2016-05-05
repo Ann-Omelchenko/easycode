@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -19,3 +20,6 @@ foreach ($posts as $post) {
   <p>
       '<a href=" "> Hello! </a>';
     </p>
+=======
+Hello, 
+>>>>>>> upstream/dev
