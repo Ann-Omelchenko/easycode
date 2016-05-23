@@ -27,7 +27,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'My project',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -42,6 +42,7 @@ AppAsset::register($this);
             ['label' => 'Category', 'url' => ['/category/index']],
             ['label' => 'Posts', 'url' => ['/post/index']],
             ['label' => 'Tags', 'url' => ['/tag/index']],
+            ['label' => 'GuestBook', 'url' => ['/guestbook/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -63,7 +64,7 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?php echo $content ?>
+        <?= $content ?>
     </div>
 </div>
 

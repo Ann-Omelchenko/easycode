@@ -1,16 +1,14 @@
 <?php
 
 namespace app\models;
-
-use Yii;
-
 use app\models\Tag;
+use Yii;
 
 /**
  * This is the model class for table "post".
  *
- * @property integer $id
- * @property integer $category_id
+ * @property string $id
+ * @property string $category_id
  * @property string $title
  * @property string $text
  * @property string $date_creation
@@ -52,8 +50,7 @@ class Post extends \yii\db\ActiveRecord
             'category_id' => 'Category ID',
             'title' => 'Title',
             'text' => 'Text',
-            'date_creation' => 'Date Creation'
-
+            'date_creation' => 'Date Creation',
         ];
     }
 
@@ -71,11 +68,6 @@ class Post extends \yii\db\ActiveRecord
             ->viaTable('post_tag', ['post_id' => 'id']);
     }
 
-    /**
-     * Returns imploded post tags names.
-     *
-     * @return string
-     */
     public function getImplodedTags() {
         $tags = [];
         foreach ($this->tags as $tag) {

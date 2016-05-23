@@ -8,7 +8,6 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
 use app\models\Tag;
 
 /**
@@ -48,7 +47,7 @@ class PostController extends Controller
 
     /**
      * Displays a single Post model.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionView($id)
@@ -85,7 +84,7 @@ class PostController extends Controller
     /**
      * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -110,7 +109,7 @@ class PostController extends Controller
     /**
      * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -123,7 +122,7 @@ class PostController extends Controller
     /**
      * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param string $id
      * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -136,20 +135,10 @@ class PostController extends Controller
         }
     }
 
-    /**
-     * @param array $tags
-     *
-     * @return array
-     */
-    protected function _validateTags(array $tags) {
-        foreach ($tags as &$tag) {
+    protected function _validateTags(array $tags){
+        foreach ($tags as &$tag){
             $tag = strtolower(trim($tag));
         }
-
-//        foreach ($tags as $key => $tag) {
-//            $tags[$key] = trim($tag);
-//        }
-
         return $tags;
     }
 

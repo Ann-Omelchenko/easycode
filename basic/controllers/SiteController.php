@@ -2,17 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\User;
+use app\models\Tag;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-
 use app\models\Post;
 use app\models\Category;
-
+use app\models\Guestbook;
 class SiteController extends Controller
 {
     public function behaviors()
@@ -20,17 +19,17 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only'  => ['logout'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
+                        'allow'   => true,
+                        'roles'   => ['@'],
                     ],
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -41,7 +40,7 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            'error' => [
+            'error'   => [
                 'class' => 'yii\web\ErrorAction',
             ],
             'captcha' => [
@@ -53,25 +52,29 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        $guestbooks  = Guestbook::find()->all();
         $categories = Category::find()->all();
-        $categoryId = Yii::$app->request->get('category_id', 0); // $_GET['category_id'];
-        if ($categoryId) {
-            $posts = Post::find()->where(['category_id' => $categoryId])->orderBy('date_creation DESC')->all();
-        } elseif ($tagId) {
+        $categoriId = Yii::$app->request->get('category_id', 0);
+        $tags       = Tag::find()->all();
+        $tagId      = Yii::$app->request->get('tag_id', 0);
+        if ($categoriId) {
+            $posts = Post::find()->where(['category_id' => $categoriId])->orderBy('date_creation DESC')->all();
+        } else if ($tagId){
             $posts = Post::find()
                 ->joinWith('tags')
                 ->where(['tag.id' => $tagId])
                 ->orderBy('date_creation DESC')
                 ->all();
-
         } else {
             $posts = Post::find()->orderBy('date_creation DESC')->all();
         }
         return $this->render(
             'index',
             [
-                'allPosts' => $posts,
-                'categories' => $categories
+                'allPosts'  => $posts,
+                'categories'=> $categories,
+                'allGuestbooks' => $guestbooks,
+                'tags'      => $tags,
             ]
         );
     }
@@ -116,16 +119,8 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionUser()
+    public function actionTest()
     {
-        $model = new User();
-        $userId = Yii::$app->request->get('user_id');
-        $results = $model->findIdentity($userId);
-        return $this->render(
-            'user',
-            array('userInfo' => $results)
-        );
+        return $this->render('test');
     }
 }
-
-
