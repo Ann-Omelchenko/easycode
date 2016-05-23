@@ -1,12 +1,8 @@
 <?php
-/*echo '<h1>Привет, <b>' . $_GET['category'] . '</b></h1>!';
-echo '<h1>Привет, <b>' . $_GET['inputName3'] . '</b></h1>!';
-echo '<h1>Привет, <b>' . $_GET['inputCost3'] . '</b></h1>!'; */
 
 $name = $_GET['inputName3'];
 $category = $_GET['category'];
 $cost = $_GET['inputCost3'];
-
 
 function check_length($value = "", $min, $max) {
     $result = (mb_strlen($value) < $min || mb_strlen($value) > $max);
@@ -19,20 +15,22 @@ if(!empty($name) && !empty($cost)) {
         echo 'Product name: '. $name;
         echo '<br />' ;
     } else {
-        echo "Введенные данные некорректные";
+        echo "Введенные данные некорректные!";
+        echo '<br />';
     }
     
-    echo 'Category'. $category;
+    echo 'Category: '. $category;
     echo '<br />';
     
     if(preg_match("|^[\d]*$|", $cost)) {
         echo 'Product cost: '. $cost;
     } else{
-        echo "Не верен формат числа." ;
+        echo "Не верен формат числа!";
+        echo '<br />';
     }
 
 } else {
-    echo "Заполните пустые поля";
+    echo "Заполните пустые поля!";
 }
 
 

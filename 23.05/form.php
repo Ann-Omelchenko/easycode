@@ -10,9 +10,9 @@
         <div>
             <div>Category</div>
             <select name="category" class="form-control">
-                <option value="1">Электроника</option>
-                <option value="2">Одежда</option>
-                <option value="3">Мебель</option>
+                <option value="Электроника">Электроника</option>
+                <option value="Одежда">Одежда</option>
+                <option value="Мебель">Мебель</option>
             </select>
             <p></p>
         </div>
