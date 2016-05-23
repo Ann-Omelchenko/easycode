@@ -19,6 +19,8 @@ use app\models\Tag;
  */
 class Post extends \yii\db\ActiveRecord
 {
+    const PATH_TO_IMG_UPLOAD_FOLDER = 'uploads/images/';
+
     /**
      * @inheritdoc
      */
@@ -33,12 +35,13 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id'], 'required'],
+            [['category_id', 'user_id'], 'required'],
             [['category_id'], 'integer'],
             [['text'], 'string'],
             [['date_creation'], 'safe'],
             [['title'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['img'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
         ];
     }
 
@@ -52,8 +55,14 @@ class Post extends \yii\db\ActiveRecord
             'category_id' => 'Category ID',
             'title' => 'Title',
             'text' => 'Text',
+<<<<<<< HEAD
             'date_creation' => 'Date Creation'
 
+=======
+            'date_creation' => 'Date Creation',
+            'user_id' => 'User id',
+            'img' => 'Image'
+>>>>>>> username/dev
         ];
     }
 
@@ -63,6 +72,10 @@ class Post extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    public function getUser() {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     public function getTags()
@@ -85,4 +98,10 @@ class Post extends \yii\db\ActiveRecord
         return implode(',', $tags);
     }
 
+<<<<<<< HEAD
+=======
+    public function getPathToImage() {
+        return self::PATH_TO_IMG_UPLOAD_FOLDER . $this->img;
+    }
+>>>>>>> username/dev
 }

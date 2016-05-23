@@ -52,7 +52,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $guestbooks  = Guestbook::find()->all();
+        $guestbooks  = Guestbook::find()->orderBy('date_creation DESC')->all();
         $categories = Category::find()->all();
         $categoriId = Yii::$app->request->get('category_id', 0);
         $tags       = Tag::find()->all();

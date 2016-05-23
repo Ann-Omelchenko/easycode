@@ -5,8 +5,19 @@ use app\models\Guestbook;
 
 $this->title = 'My project';
 ?>
- <?= Html::a('Profile', ['guestbook/index', 'id' => $guestbook>id ], ['class' => 'profile-link']) ?>
 
+<?php foreach ($allGuestbooks as $guestbook): ?>
+    <div>
+        <?= $guestbook->name ?> |  <?= $guestbook->date_creation ?>
+        <br />
+        <?= $guestbook->text ?>
+    </div>
+<?php endforeach; ?>
+<hr />
+
+ <?= Html::a('Отзывы', ['guestbook/index', 'id' => $guestbook>id ], ['class' => 'profile-link']) ?>
+
+<hr />
 <div class="site-index">
         <h1>Hello !</h1>
 </div>
@@ -15,18 +26,6 @@ $this->title = 'My project';
     <?= Html::a($category->name,['site/index', 'category_id' => $category->id], ['class' => 'btn btn-primary']) ?>
 <?php endforeach;?>
 <hr />
-
-<?php foreach ($allGuestbooks as $guestbook): ?>
-    <div>
-        <?php $guestbook->name ?>
-        <br />
-        <h1>FFf</h1>
-        <?php $guestbook->date_creation ?>
-        <br />
-        <?php $guestbook->text ?>
-    </div>
-<?php endforeach; ?>
-
 
 
 <?php foreach ($allPosts as $post): ?>
