@@ -9,30 +9,22 @@ function check_length($value = "", $min, $max) {
     return !$result;
 }
 
-if(!empty($name) && !empty($cost)) {
+if(!empty($name) && !empty($cost))  {
 
-    if(check_length($name, 3, 50) ) {
+    if(check_length($name, 3, 50) && (preg_match("|^[\d]*$|", $cost))){
         echo 'Product name: '. $name;
         echo '<br />' ;
-    } else {
-        echo "Введенные данные некорректные!";
+        echo 'Category: '. $category;
         echo '<br />';
-    }
-    
-    echo 'Category: '. $category;
-    echo '<br />';
-    
-    if(preg_match("|^[\d]*$|", $cost)) {
         echo 'Product cost: '. $cost;
-    } else{
-        echo "Не верен формат числа!";
-        echo '<br />';
+    } else {
+        require_once 'form.php';
+        echo "Введенные данные некорректные или не верен формат числа!";
     }
 
 } else {
+    require_once 'form.php';
     echo "Заполните пустые поля!";
 }
-
-
 
 ?>
