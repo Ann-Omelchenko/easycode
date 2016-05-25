@@ -12,6 +12,8 @@ use app\models\ContactForm;
 use app\models\Post;
 use app\models\Category;
 use app\models\Guestbook;
+use yii\data\Pagination;
+
 class SiteController extends Controller
 {
     public function behaviors()
@@ -77,7 +79,21 @@ class SiteController extends Controller
                 'tags'      => $tags,
             ]
         );
+
+        $query = Article::find()->where(['status' => 1]);
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 10]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+        return $this->render('index', [
+            'models' => $models,
+            'pages' => $pages,
+        ]);
     }
+
+
 
     public function actionLogin()
     {

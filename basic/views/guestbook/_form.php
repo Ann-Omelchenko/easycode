@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="guestbook-form">
+<div class="guestbook-form" >
 
     <?php $form = ActiveForm::begin(); ?>
 

@@ -55,25 +55,11 @@ class SiteController extends Controller
     {
         $categories = Category::find()->all();
         $categoryId = Yii::$app->request->get('category_id', 0); // $_GET['category_id'];
-<<<<<<< HEAD
-        if ($categoryId) {
-            $posts = Post::find()->where(['category_id' => $categoryId])->orderBy('date_creation DESC')->all();
-        } elseif ($tagId) {
-            $posts = Post::find()
-                ->joinWith('tags')
-                ->where(['tag.id' => $tagId])
-                ->orderBy('date_creation DESC')
-                ->all();
-
-        } else {
-            $posts = Post::find()->orderBy('date_creation DESC')->all();
-=======
         $tagId = Yii::$app->request->get('tag_id', 0);
         $params = [];
         if ($categoryId != 0) {
             $params['category_id'] = $categoryId;
             // SELECT * FROM post WHERE category_id = 2 ORDER BY date_creation DESC;
->>>>>>> username/dev
         }
         if ($tagId != 0) {
             $params['tag_id'] = $tagId;

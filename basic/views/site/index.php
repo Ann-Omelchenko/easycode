@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
-use app\models\Guestbook;
+use yii\widgets\LinkPager;
+use yii\data\Pagination;
 /* @var $this yii\web\View */
 
 $this->title = 'My project';
@@ -45,4 +46,14 @@ $this->title = 'My project';
     <hr />
 <?php endforeach; ?>
 
+<?php
+foreach ($allPosts as $post) {
+   echo $post->text;
+    // отображаем здесь $model
+}
 
+// отображаем ссылки на страницы
+echo LinkPager::widget([
+    'pagination' => $pages,
+]);
+?>
