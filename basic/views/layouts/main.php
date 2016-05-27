@@ -37,11 +37,9 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Category', 'url' => ['/category/index']],
-            ['label' => 'Posts', 'url' => ['/post/index']],
-            ['label' => 'Tags', 'url' => ['/tag/index']],
+            !Yii::$app->user->isGuest ? ['label' => 'Category', 'url' => ['/category/index']] : '',
+            !Yii::$app->user->isGuest ? ['label' => 'Posts', 'url' => ['/post/index']] : '',
+            !Yii::$app->user->isGuest ? ['label' => 'Tags', 'url' => ['/tag/index']] : '',
             ['label' => 'GuestBook', 'url' => ['/guestbook/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]

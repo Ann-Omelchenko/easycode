@@ -80,6 +80,8 @@ class SiteController extends Controller
             ]
         );
 
+/*
+
         $query = Article::find()->where(['status' => 1]);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 10]);
@@ -91,8 +93,9 @@ class SiteController extends Controller
             'models' => $models,
             'pages' => $pages,
         ]);
-    }
 
+*/
+    }
 
 
     public function actionLogin()

@@ -26,6 +26,17 @@ class TagController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'only'  => ['index', 'view', 'create', 'update', 'delete'],
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow'   => true,
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'roles'   => ["@"]
+                    ],
+                ],
+            ],
         ];
     }
 

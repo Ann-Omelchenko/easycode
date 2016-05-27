@@ -1,27 +1,19 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\LinkPager;
+//use yii\widgets\LinkPager;
+
 use yii\data\Pagination;
 /* @var $this yii\web\View */
 
 $this->title = 'My project';
 ?>
 
-<?php foreach ($allGuestbooks as $guestbook): ?>
-    <div>
-        <?= $guestbook->name ?> |  <?= $guestbook->date_creation ?>
-        <br />
-        <?= $guestbook->text ?>
-    </div>
-<?php endforeach; ?>
-<hr />
-
- <?= Html::a('Отзывы', ['guestbook/index', 'id' => $guestbook>id ], ['class' => 'profile-link']) ?>
-
-<hr />
 <div class="site-index">
-        <h1>Hello !</h1>
+    <h1>
+        <?= 'Hello  '. Yii::$app->user->identity->username. '!' ?>
+    </h1>
 </div>
+<hr />
 
 <?php foreach ($categories as $category):?>
     <?= Html::a($category->name,['site/index', 'category_id' => $category->id], ['class' => 'btn btn-primary']) ?>
@@ -31,11 +23,15 @@ $this->title = 'My project';
 
 <?php foreach ($allPosts as $post): ?>
     <div>
-        <?= $post->title ?> | <?= $post->category->name ?>
+        <b>
+        <?= $post->title ?>
+        </b>
         <br />
         <?= $post->date_creation ?>
         <p>
+            <i>
             <?= $post->text ?>
+            </i>
         </p>
         <p>
             <?php foreach ($post->tags as $tag): ?>
@@ -46,7 +42,24 @@ $this->title = 'My project';
     <hr />
 <?php endforeach; ?>
 
+<h3>Отзывы о сайте:</h3>
+<?php foreach ($allGuestbooks as $guestbook): ?>
+    <div>
+        <b>
+        <?= $guestbook->name ?> </b> ... <?= date('d.m.Y / H:i', strtotime($guestbook->date_creation )); ?>
+        <br />
+        <?= $guestbook->text ?>
+        <br>
+        <?php if ($guestbook->img): ?>
+        <img src=" <?= $guestbook->getPathToImage() ?>" width="150px" height="150px">
+        <?php endif; ?>
+    </div>
+<?php endforeach; ?>
+<hr />
+
+
 <?php
+/*
 foreach ($allPosts as $post) {
    echo $post->text;
     // отображаем здесь $model
@@ -56,4 +69,5 @@ foreach ($allPosts as $post) {
 echo LinkPager::widget([
     'pagination' => $pages,
 ]);
+*/
 ?>

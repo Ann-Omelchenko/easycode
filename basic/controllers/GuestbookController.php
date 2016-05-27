@@ -8,12 +8,14 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * GuestbookController implements the CRUD actions for Guestbook model.
  */
 class GuestbookController extends Controller
 {
+    //const PATH_TO_IMG_UPLOAD_FOLDER = 'uploads/images/';
     /**
      * @inheritdoc
      */
@@ -65,8 +67,13 @@ class GuestbookController extends Controller
     {
         $model = new Guestbook();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())){
+            $model->img = UploadedFile::getInstance($model, 'img');
+            $fileName = Guestbook::PATH_TO_IMG_UPLOAD_FOLDER  . $model->img->baseName . '.' . $model->img->extension;
+            $model->img->saveAs($fileName, false);
+           if ($model->save()) {
+               return $this->redirect(['view', 'id' => $model->id]);
+           }
         } else {
             return $this->render('create', [
                 'model' => $model,

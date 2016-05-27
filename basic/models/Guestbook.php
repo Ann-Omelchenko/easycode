@@ -15,6 +15,7 @@ use Yii;
  */
 class Guestbook extends \yii\db\ActiveRecord
 {
+    const PATH_TO_IMG_UPLOAD_FOLDER = 'uploads/images/';
     /**
      * @inheritdoc
      */
@@ -33,6 +34,7 @@ class Guestbook extends \yii\db\ActiveRecord
             [['text'], 'string'],
             [['date_creation'], 'safe'],
             [['name', 'email'], 'string', 'max' => 40],
+            [['img'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
         ];
     }
 
@@ -42,11 +44,17 @@ class Guestbook extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'email' => 'Email',
-            'text' => 'Text',
+            'id'            => 'ID',
+            'name'          => 'Name',
+            'email'         => 'Email',
+            'text'          => 'Ваш отзыв',
             'date_creation' => 'Date Creation',
+            'img'           => 'Image',
         ];
+    }
+
+    public function getPathToImage(){
+        
+        return self::PATH_TO_IMG_UPLOAD_FOLDER . $this->img;
     }
 }
