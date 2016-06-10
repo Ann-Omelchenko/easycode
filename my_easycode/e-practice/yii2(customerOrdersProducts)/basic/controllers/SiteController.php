@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Customer;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -49,7 +50,11 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $customers = Customer::find()->orderBy('date_creation')->all();
+        return $this->render(
+            'index',
+            ['allCustomer' => $customers]
+        );
     }
 
     public function actionLogin()
